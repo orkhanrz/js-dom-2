@@ -18,6 +18,12 @@ input {
 	box-sizing: border-box;
 }
 
+.container {
+	width: 90%;
+	margin: 0 auto;
+}
+
+/* Task 1 */
 .quote {
 	background-color: #03c5ff;
 	color: white;
@@ -42,6 +48,7 @@ input {
 	cursor: pointer;
 }
 
+/* Task 2 */
 .task-2 {
 	background-color: #2260cb;
 	padding: 16px;
@@ -94,8 +101,9 @@ input {
 	border-radius: 4px;
 }
 
+/* Task 3 */
 .tasksInputWrapper {
-	width: 500px;
+	max-width: 500px;
 	margin: 0 auto;
 	display: flex;
 	gap: 8px;
@@ -114,14 +122,6 @@ input {
 	color: white;
 	padding: 8px 16px;
 	border: 1px solid black;
-}
-
-.tasksContainer,
-.imagesContainer,
-.filterContainer,
-.soundControlContainer {
-	width: 80%;
-	margin: 0 auto;
 }
 
 .tasksContent {
@@ -176,6 +176,7 @@ input {
 	margin-bottom: 16px;
 }
 
+/* Task 4 */
 .imagesContent {
 	display: flex;
 	justify-content: space-between;
@@ -234,6 +235,7 @@ input {
 	cursor: pointer;
 }
 
+/* Task 5 */
 .filterContent h2,
 .soundControlContent h2 {
 	font-size: 32px;
@@ -283,6 +285,7 @@ input {
 	object-fit: cover;
 }
 
+/* Task 6 */
 .soundControlContent {
 	text-align: center;
 }
@@ -326,4 +329,70 @@ input {
 	height: 100%;
 	width: 50%;
 	transition: width 250ms ease;
+}
+
+/* Task 7 */
+.task-7 p {
+	text-align: center;
+}
+
+.flexImages {
+	display: flex;
+	flex-direction: column;
+	max-width: 800px;
+	width: 100%;
+	margin: 0 auto;
+}
+
+.activeImage {
+	position: relative;
+	height: 100%;
+}
+
+.activeImage img {
+	width: 100%;
+	height: 100%;
+	display: block;
+	object-fit: cover;
+}
+
+.imageControls {
+	position: absolute;
+	top: 50%;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.imageControls button {
+	color: white;
+	font-size: 18px;
+	background: none;
+	border: none;
+	border-radius: 4px;
+	padding: 8px 12px;
+	transition: background 250ms ease;
+}
+
+.imageControls button:hover, .imageControls button:focus {
+	background: black;
+}
+
+.inActiveImages {
+	display: flex;
+	overflow-x: scroll;
+	overflow-y: hidden;
+}
+
+.inActiveImageItem {
+	width: calc(100% / 6);
+	height: 80px;
+	flex-shrink: 0;
+	cursor: pointer;
+}
+
+.inActiveImageItem img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }

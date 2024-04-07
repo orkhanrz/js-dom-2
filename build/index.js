@@ -288,3 +288,57 @@ soundProgressBar.addEventListener('click', function (e) {
     soundPercentage = percentage;
     controlSound(soundPercentage);
 });
+// Task 7
+const activeImg = document.querySelector('.activeImage img');
+const inactiveImagesDiv = document.querySelector('.inActiveImages');
+const imageControlBtns = document.querySelectorAll('.imageControls button');
+let activeImageIndex = 0;
+let activeImage;
+const images = [
+    'https://images.pexels.com/photos/581222/pexels-photo-581222.jpeg?auto=compress&cs=tinysrgb&w=600',
+    'https://images.pexels.com/photos/372166/pexels-photo-372166.jpeg?auto=compress&cs=tinysrgb&w=600',
+    'https://images.pexels.com/photos/33393/caudata-strelitzia-bird-of-paradise-flower-strelitzia-orchids.jpg?auto=compress&cs=tinysrgb&w=600',
+    'https://images.pexels.com/photos/1242286/pexels-photo-1242286.jpeg?auto=compress&cs=tinysrgb&w=600',
+    'https://images.pexels.com/photos/54267/sunflower-blossom-bloom-flowers-54267.jpeg?auto=compress&cs=tinysrgb&w=600',
+    'https://images.pexels.com/photos/207172/pexels-photo-207172.jpeg?auto=compress&cs=tinysrgb&w=600',
+    'https://images.pexels.com/photos/129044/pexels-photo-129044.jpeg?auto=compress&cs=tinysrgb&w=600',
+    'https://images.pexels.com/photos/1488310/pexels-photo-1488310.jpeg?auto=compress&cs=tinysrgb&w=600',
+];
+function renderImages() {
+    images.forEach(img => {
+        const newImageDiv = document.createElement('div');
+        newImageDiv.classList.add('inActiveImageItem');
+        const newImageEl = document.createElement('img');
+        newImageEl.src = img;
+        newImageDiv.appendChild(newImageEl);
+        inactiveImagesDiv.appendChild(newImageDiv);
+        newImageDiv.addEventListener('click', function () {
+            const targetImageDiv = this.children[0];
+            activeImg.src = targetImageDiv.src;
+        });
+    });
+}
+;
+imageControlBtns.forEach(btn => {
+    btn.addEventListener('click', function () {
+        if (this.id === 'next') {
+            if (activeImageIndex === images.length - 1) {
+                activeImageIndex = 0;
+            }
+            else {
+                activeImageIndex++;
+            }
+        }
+        if (this.id === 'previous') {
+            if (activeImageIndex === 0) {
+                activeImageIndex = images.length - 1;
+            }
+            else {
+                activeImageIndex--;
+            }
+        }
+        ;
+        activeImg.src = images[activeImageIndex];
+    });
+});
+renderImages();
