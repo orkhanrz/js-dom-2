@@ -1,0 +1,276 @@
+body {
+	font-family: sans-serif;
+}
+
+ul {
+	padding: 0;
+}
+
+li {
+	list-style: none;
+}
+
+button {
+	cursor: pointer;
+}
+
+.quote {
+	background-color: #03c5ff;
+	color: white;
+	max-width: 500px;
+	padding: 32px;
+	margin: 0 auto;
+}
+
+.quoteAuthor {
+	font-size: 32px;
+	font-style: italic;
+}
+
+#quoteChange {
+	display: block;
+	width: fit-content;
+	margin: 0 auto;
+	background-color: green;
+	color: white;
+	border: none;
+	padding: 8px 16px;
+	cursor: pointer;
+}
+
+.task-2 {
+	background-color: #2260cb;
+	padding: 16px;
+}
+
+.task-2 .todo {
+	max-width: 500px;
+	margin: 0 auto;
+	padding: 16px;
+	background-color: white;
+	border-radius: 4px;
+}
+
+.todo-top {
+	display: flex;
+	gap: 8px;
+}
+
+.todo-top input {
+	outline: none;
+	width: 100%;
+	border: 2px solid #2260cb;
+	border-radius: 4px;
+	padding: 8px;
+}
+
+.todo-top button {
+	background-color: #2260cb;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	padding: 8px 16px;
+}
+
+.todo-list li {
+	background-color: #c5e0e5;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0px 8px;
+	border-radius: 4px;
+	margin-bottom: 8px;
+}
+
+.todo-list li button {
+	background-color: #1d1ba3;
+	color: white;
+	border: none;
+	padding: 8px 10px;
+	border-radius: 4px;
+}
+
+.tasksInputWrapper {
+    width: 500px;
+    margin: 0 auto;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.tasksInputWrapper input {
+    width: 100%;
+    padding: 8px;
+    outline: none;
+    border: 1px solid black;
+}
+
+.tasksInputWrapper button {
+    background-color: black;
+    color: white;
+    padding: 8px 16px;
+    border: 1px solid black;
+}
+
+.tasksContainer, .imagesContainer, .filterContainer {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.tasksContent {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 64px;
+	height: 300px;
+}
+
+.taskItem {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 100%;
+	width: 100%;
+}
+
+.taskItemContainer {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	border: 1px solid black;
+	width: 100%;
+	height: 100%;
+}
+
+.taskItemContainer p {
+	border-bottom: 1px solid black;
+    margin: 0;
+    padding: 8px 0;
+    cursor: pointer;
+}
+
+.taskItemContainer p.active {
+    background-color: #1d1ba3;
+    color: white;
+}
+
+.taskButtons {
+	margin-top: 48px;
+}
+
+.taskButtons button {
+    cursor: pointer;
+    background-color: white;
+    border: none;
+	font-size: 16px;
+}
+
+.taskButtons button:first-child {
+    margin-bottom: 16px;
+}
+
+.imagesContent {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 16px;
+}
+
+.imageItem {
+	width: 100%;
+	cursor: pointer;
+}
+
+.imageItem img {
+	width: 100%;
+	height: 250px;
+	border-radius: 8px;
+	object-fit: cover;
+}
+
+.imageItem p {
+	display: none;
+}
+
+.modal {
+	color: white;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.9);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.modal img {
+	width: 50%;
+	height: auto;
+}
+
+.modal p {
+	font-size: 20px;
+}
+
+.modal .close-btn {
+	font-size: 24px;
+	color: white;
+	position: fixed;
+	top: 64px;
+	right: 64px;
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
+.filterContent h2 {
+	font-size: 32px;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.filterCategories {
+	display: flex;
+	justify-content: center;
+	gap: 32px;
+	margin-bottom: 32px;
+}
+
+.filterCategories button {
+	background-color: black;
+	color: white;
+	font-size: 14px;
+	border: none;
+	border-radius: 8px;
+	padding: 8px;
+	cursor: pointer;
+}
+
+.filterCategories button.active {
+	background-color: #1d1ba3;
+}
+
+.filteredItems {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	gap: 32px;
+}
+
+.filteredItem {
+	flex: 1 1 calc(30% - 64px);
+	text-align: center;
+	border: 1px solid lightgray;
+	padding: 16px;
+}
+
+.filteredItem img {
+	width: 100%;
+	height: 250px;
+	object-fit: cover;
+}

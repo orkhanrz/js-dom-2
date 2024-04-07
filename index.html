@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+			integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+        <link rel="stylesheet" href="./styles.css">
+		<title>JS-DOM-2</title>
+	</head>
+	<body>
+		<h1>Task 1</h1>
+		<div class="task-1">
+			<div class="quote">
+				<p class="quoteText">
+					Lorem ipsum dolor sit amet consectetur adipisicing elit.
+					Aspernatur veniam ipsum officia explicabo deleniti inventore
+					quis voluptates reiciendis placeat aliquid?
+				</p>
+				<h3 class="quoteAuthor">Dr. Seuss</h3>
+				<button id="quoteChange">Dəyişdir</button>
+			</div>
+		</div>
+
+		<h1>Task 2</h1>
+		<div class="task-2">
+            <div class="todo">
+                <div class="todo-top">
+                    <input type="text" id="todoInput"/>
+                    <button id="todoAddBtn">Add</button>
+                </div>
+    
+                <ul class="todo-list" id="todoList"></ul>
+            </div>
+		</div>
+
+		<h1>Task 3</h1>
+		<div class="task-3">
+			<div class="tasksInputWrapper">
+				<input type="text" id="taskInput" placeholder="Title">
+				<button id="taskInputBtn">Add</button>
+			</div>
+
+			<div class="tasks">
+				<div class="tasksContainer">
+					<div class="tasksContent">
+						<div class="tasksToDo taskItem">
+							<h3>Gorulecek isler</h3>
+							<div class="taskItemContainer">
+							</div>					
+						</div>
+						<div class="taskButtons">
+							<button class="rightArrow"><i class="fa-solid fa-arrow-right"></i></button>
+							<button class="leftArrow"><i class="fa-solid fa-arrow-left"></i></button>
+						</div>
+						<div class="tasksInProcess taskItem">
+							<h3>Gorulen isler</h3>
+							<div class="taskItemContainer">
+							</div>
+						</div>
+						<div class="taskButtons">
+							<button class="rightArrow"><i class="fa-solid fa-arrow-right"></i></button>
+							<button class="leftArrow"><i class="fa-solid fa-arrow-left"></i></button>
+						</div>
+						<div class="tasksDone taskItem">
+							<h3>Gorulmus isler</h3>
+							<div class="taskItemContainer">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<h1>Task 4</h1>
+		<div class="task-4">
+			<div class="imagesContainer">
+				<div class="imagesContent">
+					<div class="imageItem">
+						<img src="https://images.pexels.com/photos/346529/pexels-photo-346529.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+						<p>Snow Mountain</p>
+					</div>
+					<div class="imageItem">
+						<img src="https://images.pexels.com/photos/147411/italy-mountains-dawn-daybreak-147411.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+						<p>House in Forest</p>
+					</div>
+					<div class="imageItem">
+						<img src="https://images.pexels.com/photos/247599/pexels-photo-247599.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+						<p>Ladder of grass</p>
+					</div>
+					<div class="imageItem">
+						<img src="https://images.pexels.com/photos/440731/pexels-photo-440731.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+						<p>Green Hill</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<h1>Task 5</h1>
+		<div class="task-5">
+			<div class="filterContainer">
+				<div class="filterContent">
+					<h2>Portfolio</h2>
+					<div class="filterCategories">
+						<button id="all" class="active">Show All</button>
+						<button id="nature">Nature</button>
+						<button id="car">Car</button>
+						<button id="people">People</button>
+					</div>
+					<div class="filteredItems">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="./build/index.js"></script>
+	</body>
+</html>
