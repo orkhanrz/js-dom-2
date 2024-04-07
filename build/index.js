@@ -258,3 +258,33 @@ categoryBtns.forEach((btn) => {
     });
 });
 renderItems(items);
+// Task 6
+const soundActions = document.querySelectorAll('.soundControlBar button');
+const soundProgress = document.querySelector('.soundControlProgress');
+const soundProgressBar = document.querySelector('.soundControlProgressBar');
+const soundPercentageEl = document.querySelector('.soundControlPercentage');
+const soundProgressWidth = 500;
+const soundProgressChangePercentage = 5;
+let soundPercentage = 50;
+function controlSound(soundPercentage) {
+    soundProgress.style.width = soundPercentage + '%';
+    soundPercentageEl.innerText = soundPercentage + '%';
+}
+;
+soundActions.forEach(btn => {
+    btn.addEventListener('click', function () {
+        if (this.id === 'increaseSound' && soundPercentage <= 100 - soundProgressChangePercentage) {
+            soundPercentage += soundProgressChangePercentage;
+        }
+        ;
+        if (this.id === 'decreaseSound' && soundPercentage >= 0 + soundProgressChangePercentage) {
+            soundPercentage -= soundProgressChangePercentage;
+        }
+        controlSound(soundPercentage);
+    });
+});
+soundProgressBar.addEventListener('click', function (e) {
+    const percentage = Math.floor(100 * Math.floor(e.clientX - this.getBoundingClientRect().left) / soundProgressWidth);
+    soundPercentage = percentage;
+    controlSound(soundPercentage);
+});
