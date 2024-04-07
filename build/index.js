@@ -342,3 +342,72 @@ imageControlBtns.forEach(btn => {
     });
 });
 renderImages();
+// Task 8
+const paginationItemsDiv = document.querySelector('.items');
+const paginationControls = document.querySelectorAll('.paginationControls');
+const paginationDiv = document.querySelector('.paginationPages');
+const paginationItems = [];
+const elementsPerPage = 10;
+let paginationBtns;
+let numberOfPages = 0;
+let currentPage = 1;
+function createItems(count) {
+    for (let i = 1; i <= count; i++) {
+        paginationItems.push('Item ' + i);
+    }
+    ;
+    numberOfPages = count / elementsPerPage;
+    createPages();
+}
+function createPages() {
+    for (let i = 1; i <= numberOfPages; i++) {
+        const paginationItem = document.createElement('button');
+        paginationItem.innerText = JSON.stringify(i);
+        if (i === 1) {
+            paginationItem.classList.add('active');
+        }
+        ;
+        paginationDiv.appendChild(paginationItem);
+        paginationItem.addEventListener('click', function () {
+            currentPage = +this.innerText;
+            removeActiveClasses(paginationBtns);
+            this.classList.add('active');
+            fetchItems(currentPage);
+        });
+    }
+    ;
+    paginationBtns = document.querySelectorAll('.paginationPages button');
+}
+;
+function renderPaginationItems(items) {
+    paginationItemsDiv.innerHTML = '';
+    items.forEach(item => {
+        const listEl = document.createElement('li');
+        listEl.textContent = item;
+        paginationItemsDiv.appendChild(listEl);
+    });
+}
+;
+function fetchItems(page) {
+    let start = (page * elementsPerPage) - elementsPerPage;
+    let end = page * elementsPerPage;
+    let itemsToShow = paginationItems.slice(start, end);
+    renderPaginationItems(itemsToShow);
+}
+paginationControls.forEach(btn => {
+    btn.addEventListener('click', function () {
+        if (this.id === 'previousPage' && currentPage > 1) {
+            currentPage--;
+        }
+        if (this.id === 'nextPage' && currentPage < numberOfPages) {
+            currentPage++;
+        }
+        ;
+        let currentPageBtn = paginationBtns[currentPage - 1];
+        removeActiveClasses(paginationBtns);
+        currentPageBtn.classList.add('active');
+        fetchItems(currentPage);
+    });
+});
+createItems(50);
+fetchItems(1);
