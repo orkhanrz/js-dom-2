@@ -244,8 +244,8 @@ function renderItems(items) {
 categoryBtns.forEach((btn) => {
     btn.addEventListener("click", function () {
         removeActiveClasses(categoryBtns);
-        this.classList.add('active');
-        filteredItemsDiv.innerHTML = '';
+        this.classList.add("active");
+        filteredItemsDiv.innerHTML = "";
         let filteredItems;
         if (this.id === ItemCategory.All) {
             filteredItems = items;
@@ -253,75 +253,74 @@ categoryBtns.forEach((btn) => {
         else {
             filteredItems = items.filter((i) => i.category === this.id);
         }
-        ;
         renderItems(filteredItems);
     });
 });
 renderItems(items);
 // Task 6
-const soundActions = document.querySelectorAll('.soundControlBar button');
-const soundProgress = document.querySelector('.soundControlProgress');
-const soundProgressBar = document.querySelector('.soundControlProgressBar');
-const soundPercentageEl = document.querySelector('.soundControlPercentage');
+const soundActions = document.querySelectorAll(".soundControlBar button");
+const soundProgress = document.querySelector(".soundControlProgress");
+const soundProgressBar = document.querySelector(".soundControlProgressBar");
+const soundPercentageEl = document.querySelector(".soundControlPercentage");
 const soundProgressWidth = 500;
 const soundProgressChangePercentage = 5;
 let soundPercentage = 50;
 function controlSound(soundPercentage) {
-    soundProgress.style.width = soundPercentage + '%';
-    soundPercentageEl.innerText = soundPercentage + '%';
+    soundProgress.style.width = soundPercentage + "%";
+    soundPercentageEl.innerText = soundPercentage + "%";
 }
-;
-soundActions.forEach(btn => {
-    btn.addEventListener('click', function () {
-        if (this.id === 'increaseSound' && soundPercentage <= 100 - soundProgressChangePercentage) {
+soundActions.forEach((btn) => {
+    btn.addEventListener("click", function () {
+        if (this.id === "increaseSound" &&
+            soundPercentage <= 100 - soundProgressChangePercentage) {
             soundPercentage += soundProgressChangePercentage;
         }
-        ;
-        if (this.id === 'decreaseSound' && soundPercentage >= 0 + soundProgressChangePercentage) {
+        if (this.id === "decreaseSound" &&
+            soundPercentage >= 0 + soundProgressChangePercentage) {
             soundPercentage -= soundProgressChangePercentage;
         }
         controlSound(soundPercentage);
     });
 });
-soundProgressBar.addEventListener('click', function (e) {
-    const percentage = Math.floor(100 * Math.floor(e.clientX - this.getBoundingClientRect().left) / soundProgressWidth);
+soundProgressBar.addEventListener("click", function (e) {
+    const percentage = Math.floor((100 * Math.floor(e.clientX - this.getBoundingClientRect().left)) /
+        soundProgressWidth);
     soundPercentage = percentage;
     controlSound(soundPercentage);
 });
 // Task 7
-const activeImg = document.querySelector('.activeImage img');
-const inactiveImagesDiv = document.querySelector('.inActiveImages');
-const imageControlBtns = document.querySelectorAll('.imageControls button');
+const activeImg = document.querySelector(".activeImage img");
+const inactiveImagesDiv = document.querySelector(".inActiveImages");
+const imageControlBtns = document.querySelectorAll(".imageControls button");
 let activeImageIndex = 0;
 let activeImage;
 const images = [
-    'https://images.pexels.com/photos/581222/pexels-photo-581222.jpeg?auto=compress&cs=tinysrgb&w=600',
-    'https://images.pexels.com/photos/372166/pexels-photo-372166.jpeg?auto=compress&cs=tinysrgb&w=600',
-    'https://images.pexels.com/photos/33393/caudata-strelitzia-bird-of-paradise-flower-strelitzia-orchids.jpg?auto=compress&cs=tinysrgb&w=600',
-    'https://images.pexels.com/photos/1242286/pexels-photo-1242286.jpeg?auto=compress&cs=tinysrgb&w=600',
-    'https://images.pexels.com/photos/54267/sunflower-blossom-bloom-flowers-54267.jpeg?auto=compress&cs=tinysrgb&w=600',
-    'https://images.pexels.com/photos/207172/pexels-photo-207172.jpeg?auto=compress&cs=tinysrgb&w=600',
-    'https://images.pexels.com/photos/129044/pexels-photo-129044.jpeg?auto=compress&cs=tinysrgb&w=600',
-    'https://images.pexels.com/photos/1488310/pexels-photo-1488310.jpeg?auto=compress&cs=tinysrgb&w=600',
+    "https://images.pexels.com/photos/581222/pexels-photo-581222.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "https://images.pexels.com/photos/372166/pexels-photo-372166.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "https://images.pexels.com/photos/33393/caudata-strelitzia-bird-of-paradise-flower-strelitzia-orchids.jpg?auto=compress&cs=tinysrgb&w=600",
+    "https://images.pexels.com/photos/1242286/pexels-photo-1242286.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "https://images.pexels.com/photos/54267/sunflower-blossom-bloom-flowers-54267.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "https://images.pexels.com/photos/207172/pexels-photo-207172.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "https://images.pexels.com/photos/129044/pexels-photo-129044.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "https://images.pexels.com/photos/1488310/pexels-photo-1488310.jpeg?auto=compress&cs=tinysrgb&w=600",
 ];
 function renderImages() {
-    images.forEach(img => {
-        const newImageDiv = document.createElement('div');
-        newImageDiv.classList.add('inActiveImageItem');
-        const newImageEl = document.createElement('img');
+    images.forEach((img) => {
+        const newImageDiv = document.createElement("div");
+        newImageDiv.classList.add("inActiveImageItem");
+        const newImageEl = document.createElement("img");
         newImageEl.src = img;
         newImageDiv.appendChild(newImageEl);
         inactiveImagesDiv.appendChild(newImageDiv);
-        newImageDiv.addEventListener('click', function () {
+        newImageDiv.addEventListener("click", function () {
             const targetImageDiv = this.children[0];
             activeImg.src = targetImageDiv.src;
         });
     });
 }
-;
-imageControlBtns.forEach(btn => {
-    btn.addEventListener('click', function () {
-        if (this.id === 'next') {
+imageControlBtns.forEach((btn) => {
+    btn.addEventListener("click", function () {
+        if (this.id === "next") {
             if (activeImageIndex === images.length - 1) {
                 activeImageIndex = 0;
             }
@@ -329,7 +328,7 @@ imageControlBtns.forEach(btn => {
                 activeImageIndex++;
             }
         }
-        if (this.id === 'previous') {
+        if (this.id === "previous") {
             if (activeImageIndex === 0) {
                 activeImageIndex = images.length - 1;
             }
@@ -337,77 +336,87 @@ imageControlBtns.forEach(btn => {
                 activeImageIndex--;
             }
         }
-        ;
         activeImg.src = images[activeImageIndex];
     });
 });
 renderImages();
 // Task 8
-const paginationItemsDiv = document.querySelector('.items');
-const paginationControls = document.querySelectorAll('.paginationControls');
 const paginationDiv = document.querySelector('.paginationPages');
-const paginationItems = [];
-const elementsPerPage = 10;
-let paginationBtns;
-let numberOfPages = 0;
-let currentPage = 1;
-function createItems(count) {
-    for (let i = 1; i <= count; i++) {
-        paginationItems.push('Item ' + i);
+const paginationItemsDiv = document.querySelector('.items');
+const paginationControlBtns = document.querySelectorAll('.paginationControl');
+const pageItems = [];
+let numberOfItemsPerPage = 10;
+let activePage = 1;
+function createItems(amount) {
+    for (let i = 1; i <= amount; i++) {
+        pageItems.push('Item ' + i);
     }
     ;
-    numberOfPages = count / elementsPerPage;
-    createPages();
 }
+;
+function fetchData(page) {
+    paginationItemsDiv.innerHTML = '';
+    const start = (page * numberOfItemsPerPage) - numberOfItemsPerPage;
+    const end = page * numberOfItemsPerPage;
+    for (let i = start; i < end; i++) {
+        const newItem = document.createElement('li');
+        newItem.innerText = pageItems[i];
+        paginationItemsDiv.appendChild(newItem);
+    }
+    ;
+}
+;
 function createPages() {
-    for (let i = 1; i <= numberOfPages; i++) {
-        const paginationItem = document.createElement('button');
-        paginationItem.innerText = JSON.stringify(i);
-        if (i === 1) {
-            paginationItem.classList.add('active');
-        }
-        ;
-        paginationDiv.appendChild(paginationItem);
-        paginationItem.addEventListener('click', function () {
-            currentPage = +this.innerText;
-            removeActiveClasses(paginationBtns);
+    paginationDiv.innerHTML = '';
+    for (let i = 1; i <= pageItems.length / numberOfItemsPerPage; i++) {
+        const paginationBtn = document.createElement('button');
+        paginationBtn.innerText = JSON.stringify(i);
+        i === 1 && paginationBtn.classList.add('active');
+        paginationDiv.appendChild(paginationBtn);
+        paginationBtn.addEventListener('click', function () {
+            activePage = +this.innerText;
+            removeActiveClasses(document.querySelectorAll('.paginationPages button'));
             this.classList.add('active');
-            fetchItems(currentPage);
+            disableBtns();
+            fetchData(i);
         });
     }
     ;
-    paginationBtns = document.querySelectorAll('.paginationPages button');
 }
 ;
-function renderPaginationItems(items) {
-    paginationItemsDiv.innerHTML = '';
-    items.forEach(item => {
-        const listEl = document.createElement('li');
-        listEl.textContent = item;
-        paginationItemsDiv.appendChild(listEl);
-    });
+function disableBtns() {
+    let previousBtn = paginationControlBtns[0];
+    let nextBtn = paginationControlBtns[1];
+    previousBtn.disabled = false;
+    nextBtn.disabled = false;
+    if (activePage === 1) {
+        previousBtn.disabled = true;
+    }
+    ;
+    if (activePage === pageItems.length / numberOfItemsPerPage) {
+        nextBtn.disabled = true;
+    }
+    ;
 }
 ;
-function fetchItems(page) {
-    let start = (page * elementsPerPage) - elementsPerPage;
-    let end = page * elementsPerPage;
-    let itemsToShow = paginationItems.slice(start, end);
-    renderPaginationItems(itemsToShow);
-}
-paginationControls.forEach(btn => {
+paginationControlBtns.forEach(btn => {
     btn.addEventListener('click', function () {
-        if (this.id === 'previousPage' && currentPage > 1) {
-            currentPage--;
-        }
-        if (this.id === 'nextPage' && currentPage < numberOfPages) {
-            currentPage++;
+        let pages = document.querySelectorAll('.paginationPages button');
+        removeActiveClasses(pages);
+        if (this.id === 'previousPage' && activePage > 1) {
+            activePage--;
         }
         ;
-        let currentPageBtn = paginationBtns[currentPage - 1];
-        removeActiveClasses(paginationBtns);
-        currentPageBtn.classList.add('active');
-        fetchItems(currentPage);
+        if (this.id === 'nextPage' && activePage < pageItems.length / numberOfItemsPerPage) {
+            activePage++;
+        }
+        ;
+        pages[activePage - 1].classList.add('active');
+        disableBtns();
+        fetchData(activePage);
     });
 });
-createItems(50);
-fetchItems(1);
+createItems(100);
+createPages();
+disableBtns();
+fetchData(activePage);
