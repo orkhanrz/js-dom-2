@@ -420,3 +420,137 @@ createItems(100);
 createPages();
 disableBtns();
 fetchData(activePage);
+;
+const usersTableBody = document.querySelector('.panelContent table tbody');
+const addUserBtn = document.querySelector('#addUser');
+let deleteUserBtns = document.querySelectorAll('.deleteUserBtn');
+let editUserBtns = document.querySelectorAll('.editUserBtns');
+let users = [];
+function fetchUsers() {
+    users = JSON.parse(localStorage.getItem('users')) || [];
+}
+;
+function updateUsers(users) {
+    localStorage.setItem('users', JSON.stringify(users));
+}
+function renderUsers() {
+    usersTableBody.innerHTML = '';
+    let usersHTML = ``;
+    if (users) {
+        users.forEach((u) => {
+            usersHTML += `
+				<tr id=${u.id}>
+					<td>${u.id}</td>
+					<td>${u.name}</td>
+					<td>${u.surname}</td>
+					<td>${u.age}</td>
+					<td class="editUserBtn"><i class="fa-solid fa-pencil"></i></td>
+					<td class="deleteUserBtn"><i class="fa-solid fa-trash"></i></td>
+				</tr>
+			`;
+        });
+    }
+    ;
+    usersTableBody.innerHTML = usersHTML;
+    deleteUserBtns = document.querySelectorAll('.deleteUserBtn');
+    editUserBtns = document.querySelectorAll('.editUserBtn');
+    deleteUserBtns.forEach(btn => {
+        btn.addEventListener('click', function () {
+            const id = this.parentElement.id;
+            deleteUser(+id);
+        });
+    });
+    editUserBtns.forEach(btn => {
+        btn.addEventListener('click', function () {
+            const id = +this.parentElement.id;
+            const user = users.find(u => u.id === id);
+            openModal('edit', user);
+        });
+    });
+}
+;
+function validate(body) {
+    let isValid = true;
+    for (let key of Object.keys(body)) {
+        if (!body[key].length) {
+            isValid = false;
+        }
+    }
+    ;
+    return isValid;
+}
+;
+function openModal(mode, user) {
+    const modal = `
+		<div class="usersModal">
+			<div class="usersModalContent">
+				<button id="closeUserModal">X</button>
+				<input type="text" class="userInput" required placeholder="Name" id="name" ${mode === 'edit' ? `value=${user === null || user === void 0 ? void 0 : user.name}` : ''}>
+				<input type="text" class="userInput" required placeholder="Surname" id="surname" ${mode === 'edit' ? `value=${user === null || user === void 0 ? void 0 : user.surname}` : ''}>
+				<input type="text" class="userInput" required placeholder="Age" id="age" ${mode === 'edit' ? `value=${user === null || user === void 0 ? void 0 : user.age}` : ''}>
+				${mode === 'edit' ? `<button class="userActionBtn" id='editUser'>Edit</button>` : `<button class="userActionBtn" id='createUser'>Create</button>`}
+			</div>
+		</div>
+	`;
+    document.body.insertAdjacentHTML('beforeend', modal);
+    const userModal = document.querySelector('.usersModal');
+    const nameInput = document.querySelector('#name');
+    const surnameInput = document.querySelector('#surname');
+    const ageInput = document.querySelector('#age');
+    const actionBtn = document.querySelector('.userActionBtn');
+    const closeModalBtn = document.querySelector('#closeUserModal');
+    const userInputs = document.querySelectorAll('.userInput');
+    actionBtn.disabled = true;
+    userInputs.forEach(uI => {
+        uI.addEventListener('keyup', function () {
+            if (!validate({ name: nameInput.value, surname: surnameInput.value, age: ageInput.value })) {
+                actionBtn.disabled = true;
+            }
+            else {
+                actionBtn.disabled = false;
+            }
+        });
+    });
+    actionBtn === null || actionBtn === void 0 ? void 0 : actionBtn.addEventListener('click', function () {
+        let nameInputVal = nameInput.value;
+        let surnameInputVal = surnameInput.value;
+        let ageInputVal = ageInput.value;
+        if (mode === 'edit') {
+            editUser(user.id, { name: nameInputVal, surname: surnameInputVal, age: +ageInputVal });
+        }
+        ;
+        if (mode === 'create') {
+            const newUserId = users.length ? +users[users.length - 1].id + 1 : 1;
+            createUser({ id: newUserId, name: nameInputVal, surname: surnameInputVal, age: +ageInputVal });
+        }
+        ;
+        userModal.remove();
+    });
+    closeModalBtn === null || closeModalBtn === void 0 ? void 0 : closeModalBtn.addEventListener('click', () => userModal.remove());
+}
+;
+function createUser(user) {
+    users.push(user);
+    updateUsers(users);
+    renderUsers();
+}
+;
+function editUser(id, updateBody) {
+    const userIndex = users.findIndex(u => u.id === id);
+    if (userIndex != -1) {
+        users[userIndex] = Object.assign(Object.assign({}, users[userIndex]), updateBody);
+    }
+    ;
+    updateUsers(users);
+    renderUsers();
+}
+;
+function deleteUser(id) {
+    users = users.filter(u => u.id !== id);
+    updateUsers(users);
+    renderUsers();
+}
+;
+fetchUsers();
+renderUsers();
+addUserBtn.addEventListener('click', () => openModal('create'));

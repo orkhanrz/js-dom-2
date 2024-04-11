@@ -15,6 +15,7 @@ button {
 }
 
 input {
+	outline: none;
 	box-sizing: border-box;
 }
 
@@ -68,7 +69,6 @@ input {
 }
 
 .todo-top input {
-	outline: none;
 	width: 100%;
 	border: 2px solid #2260cb;
 	border-radius: 4px;
@@ -113,7 +113,6 @@ input {
 .tasksInputWrapper input {
 	width: 100%;
 	padding: 8px;
-	outline: none;
 	border: 1px solid black;
 }
 
@@ -431,4 +430,80 @@ input {
 .paginationPages .active {
 	background: #2260cb;
 	color: white;
+}
+
+/* Task 9 */
+.panelContent {
+	max-width: 600px;
+	width: 100%;
+	margin: auto;
+}
+
+.panelContent table {
+	border: 1px solid black;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.panelContent table th, .panelContent table td {
+	border: 1px solid black;
+	text-align: center;
+	padding: 8px;
+}
+
+.panelContent i {
+	cursor: pointer;
+}
+
+#addUser {
+	color: white;
+	background-color: black;
+	margin-bottom: 8px;
+	border: none;
+	padding: 8px 12px;
+}
+
+.usersModal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.8);
+	display: grid;
+	place-items: center;
+}
+
+.usersModalContent {
+	display: flex;
+	flex-direction: column;
+	max-width: 500px;
+	width: 100%;
+}
+
+.usersModalContent input {
+	margin-bottom: 16px;
+	padding: 8px;
+}
+
+.userActionBtn {
+	background-color: green;
+	color: white;
+	border: none;
+	padding: 8px 16px;
+	margin-right: auto;
+}
+
+.userActionBtn:disabled {
+	background-color: gray;
+}
+
+#closeUserModal {
+	position: fixed;
+	top: 32px;
+	right: 32px;
+	background: none;
+	border: none;
+	color: white;
+	font-size: 16px;
 }
