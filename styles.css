@@ -24,6 +24,33 @@ input {
 	margin: 0 auto;
 }
 
+.blue {
+	background-color: #03c5ff;
+}
+
+.red {
+	background-color: rgb(241, 98, 98);
+}
+
+.green {
+	background-color: rgb(0, 216, 54);
+}
+
+.black {
+	background-color: black;
+}
+
+.yellow {
+	background-color: rgb(255, 213, 0);
+}
+
+.blue, .red, .green, .yellow, .black {
+	color: white;
+	text-align: center;
+	border-radius: 4px;
+	padding: 4px;
+}
+
 /* Task 1 */
 .quote {
 	background-color: #03c5ff;
@@ -505,5 +532,69 @@ input {
 	background: none;
 	border: none;
 	color: white;
+	font-size: 16px;
+}
+
+.assessment {
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+.assessment table {
+	width: 100%;
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+.assessment td, .assessment th {
+	border: 1px solid black;
+	text-align: center;
+	padding: 4px;
+}
+
+.assessment td p, .assessment th p {
+	width: 50%;
+	margin: 0 auto;
+	cursor: pointer;
+}
+
+.assessmentModal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+.assessmentModal.active {
+	display: flex;
+}
+
+.assessmentModalInner h2 {
+	color: white;
+	margin: 0;
+}
+
+.assessmentModalItems {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+}
+
+.assessmentModalItems p {
+	flex: 8% 1 1;
+}
+
+.closeAssessment {
+	position: fixed;
+	top: 32px;
+	right: 32px;
+	background: none;
+	color: white;
+	border: none;
 	font-size: 16px;
 }
