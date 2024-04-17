@@ -540,19 +540,19 @@ input {
 	margin: 0 auto;
 }
 
-.assessment table {
+.table {
 	width: 100%;
 	border: 1px solid black;
 	border-collapse: collapse;
 }
 
-.assessment td, .assessment th {
+ td,  th {
 	border: 1px solid black;
 	text-align: center;
 	padding: 4px;
 }
 
-.assessment td p, .assessment th p {
+ td p,  th p {
 	width: 50%;
 	margin: 0 auto;
 	cursor: pointer;
@@ -597,4 +597,67 @@ input {
 	color: white;
 	border: none;
 	font-size: 16px;
+}
+
+.ilham {
+	max-width: 700px;
+	width: 100%;
+	margin: 0 auto;
+}
+
+.ilhamInputWrapper {
+	margin-bottom: 16px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 30px;
+}
+
+.ilham input {
+	flex: 1;
+	max-width: 700px;
+	padding: 8px;
+}
+
+.ilham button {
+	cursor: pointer;
+	width: max-content;
+	padding: 8px;
+}
+
+.ilham table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.ilham table td {
+	position: relative;
+	min-width: 80px;
+}
+
+.ilham table td button {
+	width: max-content;
+	border: none;
+}
+
+.ilham table td button:disabled {
+	cursor: not-allowed;
+}
+
+.tool {
+	background-color: white;
+	padding: 16px 32px;
+	border: 2px solid lightgray;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	display: flex;
+	z-index: 1;
+}
+
+.tool button {
+	border: none;
+	border-radius: 0;
+	margin-right: 8px;
+	font-size: 14px;
 }
