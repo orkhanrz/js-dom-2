@@ -1015,6 +1015,134 @@ var quiz = {
 			},
 		],
 	},
+	geography: {
+		easy: [
+			{
+				question: "Hansı ölkə ilə həmsərhəd deyilik?",
+				A: "A)Türkiyə",
+				B: "B)Qazaxıstan",
+				C: "C)Özbəkistan",
+				D: "D)Rusiya",
+				correct: "C",
+			},
+			{
+				question: "Hansı çay sərhəd çayıdır?",
+				A: "A)Kür",
+				B: "B)Mazımçay",
+				C: "C)Tərtərçay",
+				D: "D)Kiş",
+				correct: "B",
+			},
+			{
+				question: "Azərbaycan Respublikası hansı qitədə yerləşir?",
+				A: "A)Amerika",
+				B: "B)Avropa",
+				C: "C)Afrika",
+				D: "D)Asiya",
+				correct: "D",
+			},
+			{
+				question: "Kasıblıq, aşağı təhsil və səhiyyə hansı regiona aiddir?",
+				A: "A)Avropa",
+				B: "B)Amerika",
+				C: "C)Afrika",
+				D: "D)Avstraliya",
+				correct: "C",
+			},
+			{
+				question: 'Bu ölkə "Böyük yeddiliyə" daxil deyil?',
+				A: "A)Yaponiya",
+				B: "B)Almaniya",
+				C: "C)Fransa",
+				D: "D)Ispaniya",
+				correct: "D",
+			},
+		],
+		medium: [
+			{
+				question: 'Miqrasiya adlanır?',
+				A: "A)Əhalinin könüllü olaraq başqa ölkəyə köçməsi",
+				B: "B)Əhalinin bir yerdən başqa yerə köçməsi",
+				C: "C)Əhalinin bir qisminin müvəqqəti şəkildə başqa ölkəyə köçürülməsi",
+				D: "D)Əhalinin məcburi şəkildə ölkədən çıxarılması",
+				correct: "B",
+			},
+			{
+				question: 'ABŞ – a immiqrantlar başlıca olaraq gəlirlər:',
+				A: "A)Latın Amerikasından, Asiyadan və Avropadan",
+				B: "B)Hindistandan, Kanadadan, Afrikadan",
+				C: "C)Cənubi Avropadan, Şimali Afrikadan, MDB ölkələrindən",
+				D: "D)Hindistandan, Pakistandan, Misirdən",
+				correct: "A",
+			},
+			{
+				question: 'Hind – Avropa dil ailəsinə aid olmayan dil qrupu?',
+				A: "A)Qafqaz",
+				B: "B)Slavyan",
+				C: "C)Iran",
+				D: "D)Roman",
+				correct: "A",
+			},
+			{
+				question: 'Birmillətli dövlət deyil?',
+				A: "A)Niderland",
+				B: "B)Norveç",
+				C: "C)Türkiyə",
+				D: "D)Yaponiya",
+				correct: "C",
+			},
+			{
+				question: 'Hansı dünyəvi dindir?',
+				A: "A)Iudaizm",
+				B: "B)Sintoizm",
+				C: "C)Lamaizm",
+				D: "D)Buddizm",
+				correct: "D",
+			},
+		],
+		hard: [
+			{
+				question: 'Mərkəzi Amerika regionuna aid deyil?',
+				A: "A)Meksika",
+				B: "B)Beliz",
+				C: "C)Honduras",
+				D: "D)Çili",
+				correct: "D",
+			},
+			{
+				question: 'Ən çox əhalisi olan ölkə?',
+				A: "A)Kolumbiya",
+				B: "B)Meksika",
+				C: "C)Braziliya",
+				D: "D)Argentina",
+				correct: "C",
+			},
+			{
+				question: 'Latın Amerikasında ən geniş yayılmış dil hansıdır?',
+				A: "A)Portuqal",
+				B: "B)İngilis",
+				C: "C)İtalyan",
+				D: "D)İspan",
+				correct: "D",
+			},
+			{
+				question: 'Çinin əhalisi?',
+				A: "A)2,101,3 mln. nəfər",
+				B: "B)1,761,3 mln. nəfər",
+				C: "C)2, 243, 7 mln. nəfər",
+				D: "D)1,348,6 mln. nəfər",
+				correct: "D",
+			},
+			{
+				question: 'Ən çox əhalisi olan Mərkəzi Asiya ölkəsi?',
+				A: "A)Qırğızıstan",
+				B: "B)Türkmənistan",
+				C: "C)Özbəkistan",
+				D: "D)Qazaxıstan",
+				correct: "C",
+			},
+		],
+	},
 };
 
 const step1 = document.querySelector(".step-1");
@@ -1024,7 +1152,7 @@ const step4 = document.querySelector(".step-4");
 const quizPages = document.querySelector(".controls .pages");
 const question = document.querySelector(".question");
 const options = document.querySelector(".options");
-const optionsBtns = document.querySelectorAll('.options button');
+const optionsBtns = document.querySelectorAll(".options button");
 const previous = document.querySelector(".leftBtn");
 const next = document.querySelector(".rightBtn");
 
@@ -1041,9 +1169,9 @@ function showQuestion(questionIndex) {
 
 	quizPages.childNodes.forEach((page) => page.classList.remove("active"));
 	quizPages.childNodes[questionIndex].classList.add("active");
-	optionsBtns.forEach(btn => {
-		btn.classList.remove('wrong');
-		btn.classList.remove('selected');
+	optionsBtns.forEach((btn) => {
+		btn.classList.remove("wrong");
+		btn.classList.remove("selected");
 		btn.disabled = false;
 	});
 
@@ -1070,7 +1198,7 @@ function createQuizPages(questions) {
 	}
 }
 
-function endGame(){
+function endGame() {
 	notAnswered = questions.length - (wrongAnswers + rightAnswers);
 
 	correctCount.textContent = rightAnswers;
@@ -1078,11 +1206,11 @@ function endGame(){
 	notAnsweredCount.textContent = notAnswered;
 	totalCount.textContent = questions.length;
 
-	step3.style.display = 'none';
-	step4.style.display = 'block';
-};
+	step3.style.display = "none";
+	step4.style.display = "block";
+}
 
-function restartGame(){
+function restartGame() {
 	subject = null;
 	level = null;
 	questions = [];
@@ -1090,11 +1218,11 @@ function restartGame(){
 	rightAnswers = 0;
 	wrongAnswers = 0;
 	notAnswered = 0;
-	quizPages.innerHTML = '';
+	quizPages.innerHTML = "";
 
-	step4.style.display = 'none';
-	step1.style.display = 'block';
-};
+	step4.style.display = "none";
+	step1.style.display = "block";
+}
 
 step1.childNodes.forEach((btn) => {
 	btn.addEventListener("click", function () {
@@ -1144,11 +1272,13 @@ optionsBtns.forEach((option) => {
 		} else {
 			wrongAnswers++;
 			this.classList.add("wrong");
-			document.querySelector(".options #" + correctAnswer).classList.add("selected");
+			document
+				.querySelector(".options #" + correctAnswer)
+				.classList.add("selected");
 		}
 
-		optionsBtns.forEach(option => option.disabled = true);
+		optionsBtns.forEach((option) => (option.disabled = true));
 	});
 });
 
-restart.addEventListener('click', restartGame);
+restart.addEventListener("click", restartGame);
