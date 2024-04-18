@@ -711,6 +711,10 @@ input {
 	padding: 8px 0;
 }
 
+.step-3 .options button:disabled {
+	cursor: not-allowed;
+}
+
 .step-3 .options button.selected {
 	background-color: rgb(0, 165, 41);
 }

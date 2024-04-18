@@ -1044,6 +1044,7 @@ function showQuestion(questionIndex) {
 	optionsBtns.forEach(btn => {
 		btn.classList.remove('wrong');
 		btn.classList.remove('selected');
+		btn.disabled = false;
 	});
 
 	question.innerText = currentQuestion.question;
@@ -1145,6 +1146,8 @@ optionsBtns.forEach((option) => {
 			this.classList.add("wrong");
 			document.querySelector(".options #" + correctAnswer).classList.add("selected");
 		}
+
+		optionsBtns.forEach(option => option.disabled = true);
 	});
 });
 
