@@ -1,5 +1,5 @@
 body {
-	font-family: sans-serif;
+	font-family: Roboto, sans-serif;
 }
 
 ul {
@@ -660,4 +660,112 @@ input {
 	border-radius: 0;
 	margin-right: 8px;
 	font-size: 14px;
+}
+
+.quiz {
+	max-width: 600px;
+	width: 100%;
+	margin: 0 auto;
+	background-color: #2260cb;
+	border-radius: 8px;
+	display: flex;
+	justify-content: center;
+	padding: 16px;
+}
+
+.step-2, .step-3, .step-4 {
+	display: none;
+}
+
+.step-1 button, .step-2 button {
+	background-color: white;
+	padding: 8px 16px;
+	border: none;
+}
+
+.step-3 {
+	width: 90%;
+	margin: 0 auto;
+}
+
+.step-3 h3 {
+	color: white;
+	background-color: #1d1ba3;
+	padding: 8px 16px;
+	border-radius: 8px;
+	text-align: center;
+}
+
+.step-3 .options {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 32px;
+	margin-bottom: 32px;
+}
+
+.step-3 .options button {
+	flex: 0 0 calc(50% - 16px);
+	color: white;
+	background-color: transparent;
+	border: 1px solid white;
+	padding: 8px 0;
+}
+
+.step-3 .options button.selected {
+	background-color: rgb(0, 165, 41);
+}
+
+.step-3 .options button.wrong {
+	background-color: rgb(245, 58, 58);
+}
+
+.step-3 .controls {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.step-3 .controls .pages {
+	margin: 0 4px;
+}
+
+.step-3 .controls .pages button {
+	border-radius: 50%;
+	padding: 4px 8px;
+	margin: 0 4px;
+	border: none;
+	background-color: #1d1ba3;
+	color: white;
+}
+
+.step-3 .controls .pages button.active {
+	background-color: rgb(0, 165, 41);
+}
+
+.step-3 .controls .leftBtn, .step-3 .controls .rightBtn {
+	background-color: white;
+	border-radius: 50%;
+	border: none;
+	padding: 4px 10px;
+	color: #1d1ba3;
+	font-weight: 800;
+	font-size: 18px;
+}
+
+.step-4 {
+	text-align: center;
+	color: white;
+	display: none;
+}
+
+.step-4 h3 {
+	font-size: 22px;
+}
+
+.step-4 button {
+	background-color: white;
+	border: none;
+	font-size: 14px;
+	margin-top: 8px;
+	padding: 8px;
 }
