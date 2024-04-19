@@ -18,6 +18,7 @@ const quotes = [
 		author: "Dr. Seuss",
 	},
 ];
+
 function getRandomNumber(elements) {
 	let random = Math.floor(Math.random() * elements.length);
 	if (random === current) {
@@ -27,6 +28,7 @@ function getRandomNumber(elements) {
 	}
 	return current;
 }
+
 function changeQuote() {
 	let random = getRandomNumber(quotes);
 	let activeQuote = quotes[random];
@@ -34,6 +36,8 @@ function changeQuote() {
 	quoteAuthor.innerText = activeQuote.author;
 }
 quoteChange.onclick = changeQuote;
+
+
 // Task 2
 const todoBtns = document.getElementsByClassName(".todo-list li button");
 const todoInput = document.querySelector("#todoInput");
