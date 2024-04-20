@@ -1163,6 +1163,7 @@ const next = document.querySelector(".rightBtn");
 let subject;
 let level;
 let questions = [];
+let answers = [];
 let questionIndex = 0;
 let rightAnswers = 0;
 let wrongAnswers = 0;
@@ -1177,6 +1178,18 @@ function showQuestion(questionIndex) {
 		btn.classList.remove("wrong");
 		btn.classList.remove("selected");
 		btn.disabled = false;
+
+		if (answers[questionIndex]){
+			if (btn.id === questions[questionIndex].correct){
+				btn.classList.add("selected");
+			};
+
+			if (btn.id === answers[questionIndex] && answers[questionIndex] !== questions[questionIndex].correct){
+				btn.classList.add('wrong');
+			}
+
+			btn.disabled = true;
+		};
 	});
 
 	question.innerText = currentQuestion.question;
@@ -1217,6 +1230,7 @@ function endGame() {
 function restartGame() {
 	subject = null;
 	level = null;
+	answers = [];
 	questions = [];
 	questionIndex = 0;
 	rightAnswers = 0;
@@ -1276,11 +1290,10 @@ optionsBtns.forEach((option) => {
 		} else {
 			wrongAnswers++;
 			this.classList.add("wrong");
-			document
-				.querySelector(".options #" + correctAnswer)
-				.classList.add("selected");
+			document.querySelector(".options #" + correctAnswer).classList.add("selected");
 		}
 
+		answers.push(this.id);
 		optionsBtns.forEach((option) => (option.disabled = true));
 	});
 });

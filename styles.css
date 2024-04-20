@@ -665,7 +665,7 @@ input {
 .quiz {
 	max-width: 600px;
 	width: 100%;
-	margin: 0 auto 256px auto;
+	margin: 128px auto;
 	background-color: #2260cb;
 	border-radius: 8px;
 	display: flex;
