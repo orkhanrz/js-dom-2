@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
+		<title>Task 1</title>
+		<style>
+			body {
+				font-family: Poppins, sans-serif;
+			}
+
+			.quote {
+				background-color: #03c5ff;
+				color: white;
+				max-width: 500px;
+				padding: 32px;
+				margin: 0 auto;
+			}
+
+			.quoteAuthor {
+				font-size: 32px;
+				font-style: italic;
+			}
+
+			#quoteChange {
+				display: block;
+				width: fit-content;
+				margin: 0 auto;
+				background-color: green;
+				color: white;
+				border: none;
+				padding: 8px 16px;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Task 1</h1>
+		<div class="task-1">
+			<div class="quote">
+				<p class="quoteText">
+					Lorem ipsum dolor sit amet consectetur adipisicing elit.
+					Aspernatur veniam ipsum officia explicabo deleniti inventore
+					quis voluptates reiciendis placeat aliquid?
+				</p>
+				<h3 class="quoteAuthor">Dr. Seuss</h3>
+				<button id="quoteChange">Dəyişdir</button>
+			</div>
+		</div>
+
+		<script>
+			// Task 1
+			let current;
+			const quoteText = document.querySelector(".quoteText");
+			const quoteAuthor = document.querySelector(".quoteAuthor");
+			const quoteChange = document.querySelector("#quoteChange");
+			const quotes = [
+				{
+					text: "Be who you are and say what you feel, because those who mind don't matter and those who matter don't mind",
+					author: "Bernard M. Baruch",
+				},
+				{
+					text: "Two things are infinite: the universe and human stupidity; and i'm not sure about the universe",
+					author: "Albert Einstein",
+				},
+				{
+					text: "Don't cry because it's over, smile because it happened.",
+					author: "Dr. Seuss",
+				},
+			];
+
+			function getRandomNumber(elements) {
+				let random = Math.floor(Math.random() * elements.length);
+				if (random === current) {
+					getRandomNumber(elements);
+				} else {
+					current = random;
+				}
+				return current;
+			}
+
+			function changeQuote() {
+				let random = getRandomNumber(quotes);
+				let activeQuote = quotes[random];
+				quoteText.innerText = activeQuote.text;
+				quoteAuthor.innerText = activeQuote.author;
+			}
+			quoteChange.onclick = changeQuote;
+		</script>
+	</body>
+</html>

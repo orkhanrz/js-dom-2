@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Task 11</title>
+		<style>
+            ul {
+				padding: 0;
+			}
+
+			li {
+				list-style: none;
+			}
+
+			button {
+				cursor: pointer;
+			}
+
+			input {
+				outline: none;
+				box-sizing: border-box;
+			}
+
+			.blue {
+				background-color: #03c5ff;
+			}
+
+			.red {
+				background-color: rgb(241, 98, 98);
+			}
+
+			.green {
+				background-color: rgb(0, 216, 54);
+			}
+
+			.black {
+				background-color: black;
+			}
+
+			.yellow {
+				background-color: rgb(255, 213, 0);
+			}
+
+			.blue,
+			.red,
+			.green,
+			.yellow,
+			.black {
+				color: white;
+				text-align: center;
+				border-radius: 4px;
+				padding: 4px;
+			}
+
+            .table {
+				border: 1px solid black;
+				border-collapse: collapse;
+			}
+
+			td,
+			th {
+				border: 1px solid black;
+				text-align: center;
+				padding: 4px;
+			}
+
+			td p,
+			th p {
+				width: 50%;
+				margin: 0 auto;
+				cursor: pointer;
+			}
+
+			.ilham {
+				width: fit-content;
+				margin: 0 auto;
+			}
+
+			.ilhamInputWrapper {
+				margin-bottom: 16px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 30px;
+			}
+
+			.ilham input {
+				flex: 1;
+				max-width: 700px;
+				padding: 8px;
+			}
+
+			.ilham button {
+				cursor: pointer;
+				width: max-content;
+				padding: 8px;
+			}
+
+			.ilham table {
+				width: 100%;
+				border-collapse: collapse;
+			}
+
+			.ilham table td {
+				position: relative;
+				min-width: 80px;
+			}
+
+			.ilham table td button {
+				width: max-content;
+				border: none;
+			}
+
+			.ilham table td button:disabled {
+				cursor: not-allowed;
+			}
+
+			.tool {
+				background-color: white;
+				padding: 16px 32px;
+				border: 2px solid lightgray;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				display: flex;
+				z-index: 1;
+			}
+
+			.tool button {
+				border: none;
+				border-radius: 0;
+				margin-right: 8px;
+				font-size: 14px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Task 11</h1>
+		<div class="task-11">
+			<div class="container">
+				<div class="ilham">
+					<div class="ilhamInputWrapper">
+						<input type="number" placeholder="say" />
+						<button>Testiq et</button>
+					</div>
+
+					<table>
+						<thead>
+							<tr>
+								<th>No</th>
+								<th>S.A.A</th>
+								<th class="targetHeadCol">Netice</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>Ilham Eliyev Heyder</td>
+								<td class="targetBodyCol">0.0</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>Ilham Eliyev Heyder</td>
+								<td class="targetBodyCol">0.0</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>Ilham Eliyev Heyder</td>
+								<td class="targetBodyCol">0.0</td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td>Ilham Eliyev Heyder</td>
+								<td class="targetBodyCol">0.0</td>
+							</tr>
+							<tr>
+								<td>5</td>
+								<td>Ilham Eliyev Heyder</td>
+								<td class="targetBodyCol">0.0</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			const ilhamInputWrapper =
+				document.querySelector(".ilhamInputWrapper");
+			const ilhamInput = document.querySelector(".ilham input");
+			const ilhamBtn = document.querySelector(".ilham button");
+			const targetHeadCol = document.querySelector(".targetHeadCol");
+			const targetBodyCols = document.querySelectorAll(".targetBodyCol");
+			let mark = 0;
+			let rowMarks = [0, 0, 0, 0, 0];
+
+			function closeAssessmentTool() {
+				document
+					.querySelectorAll(".tool")
+					.forEach((tool) => tool.remove());
+			}
+
+			function openAssessmentTool(cell, row) {
+				closeAssessmentTool();
+				const tool = document.createElement("div");
+				tool.classList.add("tool");
+				const full = document.createElement("button");
+				full.textContent = "tam";
+				full.classList.add("green");
+				const part = document.createElement("button");
+				part.textContent = "natamam";
+				part.classList.add("yellow");
+				const zero = document.createElement("button");
+				zero.textContent = "0";
+				zero.classList.add("red");
+				tool.appendChild(full);
+				tool.appendChild(part);
+				tool.appendChild(zero);
+				cell.appendChild(tool);
+
+				tool.childNodes.forEach((btn) => {
+					btn.addEventListener("click", function () {
+						markPerson(row, cell, btn);
+					});
+				});
+			}
+
+			function createElements(length) {
+				mark = 10 / length;
+				for (let row = 1; row <= length; row++) {
+					const th = document.createElement("th");
+					th.innerText = `Is No${row}`;
+					targetHeadCol.before(th);
+					targetBodyCols.forEach((targetBodyCell, i) => {
+						const td = document.createElement("td");
+						const button = document.createElement("button");
+						button.innerText = `d/e`;
+						button.classList.add("black");
+						td.appendChild(button);
+						targetBodyCell.before(td);
+
+						button.addEventListener("click", () => {
+							openAssessmentTool(td, i + 1);
+						});
+					});
+				}
+			}
+
+			function markPerson(row, cell, btn) {
+				cell.children[0].textContent = btn.textContent;
+				cell.children[0].classList.remove(
+					cell.children[0].classList.value
+				);
+				cell.children[0].classList.add(btn.classList.value);
+
+				if (btn.className.includes("green")) {
+					rowMarks[row] += mark;
+				} else if (btn.className.includes("yellow")) {
+					rowMarks[row] += mark / 2;
+				} else {
+					rowMarks[row] += 0;
+				}
+
+				targetBodyCols[row - 1].textContent = rowMarks[row].toFixed(2);
+				cell.children[0].disabled = true;
+				closeAssessmentTool();
+			}
+
+			ilhamBtn.addEventListener("click", () => {
+				createElements(+ilhamInput.value);
+				ilhamInputWrapper.remove();
+			});
+		</script>
+	</body>
+</html>

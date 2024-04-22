@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Task 6</title>
+		<style>
+			.soundControlContent {
+				text-align: center;
+			}
+
+			.soundControlBar {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.soundControlItem {
+				height: 20px;
+			}
+
+			.soundControlItem button {
+				border: none;
+				background: white;
+				font-size: 16px;
+				font-weight: bold;
+				cursor: pointer;
+			}
+
+			.soundControlItem h3 {
+				margin: 8px 0;
+			}
+
+			.soundControlBar {
+				height: 100%;
+			}
+
+			.soundControlProgressBar {
+				width: 500px;
+				border: 1px solid black;
+				height: 100%;
+				margin: 0 8px;
+				cursor: pointer;
+			}
+
+			.soundControlProgress {
+				background-color: lightgreen;
+				height: 100%;
+				width: 50%;
+				transition: width 250ms ease;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Task 6</h1>
+		<div class="task-6">
+			<div class="container">
+				<div class="soundControlContent">
+					<h2>Səs səviyyəsinin tənzimlənməsi</h2>
+					<div class="soundControlItem">
+						<div class="soundControlBar">
+							<button id="decreaseSound">-</button>
+							<div class="soundControlProgressBar">
+								<div class="soundControlProgress"></div>
+							</div>
+							<button id="increaseSound">+</button>
+						</div>
+						<h3 class="soundControlPercentage">50%</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			const soundActions = document.querySelectorAll(
+				".soundControlBar button"
+			);
+			const soundProgress = document.querySelector(
+				".soundControlProgress"
+			);
+			const soundProgressBar = document.querySelector(
+				".soundControlProgressBar"
+			);
+			const soundPercentageEl = document.querySelector(
+				".soundControlPercentage"
+			);
+			const soundProgressWidth = 500;
+			const soundProgressChangePercentage = 5;
+			let soundPercentage = 50;
+
+			function controlSound(soundPercentage) {
+				soundProgress.style.width = soundPercentage + "%";
+				soundPercentageEl.innerText = soundPercentage + "%";
+			}
+
+			soundActions.forEach((btn) => {
+				btn.addEventListener("click", function () {
+					if (
+						this.id === "increaseSound" &&
+						soundPercentage <= 100 - soundProgressChangePercentage
+					) {
+						soundPercentage += soundProgressChangePercentage;
+					}
+					if (
+						this.id === "decreaseSound" &&
+						soundPercentage >= 0 + soundProgressChangePercentage
+					) {
+						soundPercentage -= soundProgressChangePercentage;
+					}
+					controlSound(soundPercentage);
+				});
+			});
+
+			soundProgressBar.addEventListener("click", function (e) {
+				const percentage = Math.floor(
+					(100 *
+						Math.floor(
+							e.clientX - this.getBoundingClientRect().left
+						)) /
+						soundProgressWidth
+				);
+				soundPercentage = percentage;
+				controlSound(soundPercentage);
+			});
+		</script>
+	</body>
+</html>

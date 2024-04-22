@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Task 13</title>
+		<style>
+			button {
+				cursor: pointer;
+			}
+
+			.shopping {
+				max-width: 800px;
+				width: 100%;
+				margin: 0 auto;
+			}
+
+			.shopping-top {
+				margin-bottom: 16px;
+			}
+
+			.shopping-top button {
+				color: white;
+				border: none;
+				padding: 8px;
+			}
+
+			.shopping-top button:first-child {
+				background-color: #1d1ba3;
+			}
+
+			.shopping-top button:last-child {
+				background-color: red;
+			}
+
+			.shopping-items {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				gap: 16px;
+			}
+
+			.shopping-item {
+				text-align: center;
+				border: 1px solid black;
+				border-radius: 8px;
+				padding: 0 0 16px 0;
+				overflow: hidden;
+				width: 100%;
+			}
+
+			.shopping-item img {
+				width: 100%;
+				height: 200px;
+				object-fit: cover;
+			}
+
+			.shopping-item h3 {
+				margin: 0;
+			}
+
+			.shopping-item p {
+				margin: 0 0 8px 0;
+			}
+
+			.shopping-item button {
+				background-color: #1d1ba3;
+				color: white;
+				border: none;
+				padding: 8px;
+				border-radius: 4px;
+			}
+
+			.cart-modal {
+				display: none;
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100vh;
+				background-color: rgba(0, 0, 0, 0.5);
+				align-items: center;
+				justify-content: center;
+			}
+
+			.cart-modal.active {
+				display: flex;
+			}
+
+			.cart-modal-inner {
+				padding: 16px;
+				width: 50%;
+				background-color: white;
+			}
+
+			.cart-modal-top {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+
+			.cart-modal-top h3 {
+				margin: 0 0 16px 0;
+			}
+
+			.cart-modal-top button {
+				background-color: transparent;
+				border: none;
+			}
+
+			.cart-modal-item {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				border-bottom: 1px solid black;
+			}
+
+			.cart-modal-item-img {
+				width: 100px;
+				height: 100px;
+			}
+
+			.cart-modal-item-img img {
+				width: 100%;
+				height: 100%;
+			}
+
+			.cart-modal-item-count {
+				display: flex;
+				align-items: center;
+			}
+
+			.cart-modal-item-count button {
+				margin: 0 8px;
+				background-color: black;
+				color: white;
+				border-radius: 50%;
+				border: none;
+				width: 20px;
+				height: 20px;
+				display: grid;
+				place-items: center;
+			}
+
+			.cart-modal-item-remove {
+				background-color: red;
+				color: white;
+				width: 20px;
+				height: 20px;
+				display: grid;
+				place-items: center;
+				border: none;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Task 13</h1>
+		<div class="task-13">
+			<div class="container">
+				<div class="shopping">
+					<div class="shopping-top">
+						<button class="cart-btn">Cart (<span class="cart-items-count">0</span>)</button>
+						<button class="clear-cart">Clear cart</button>
+					</div>
+					<div class="shopping-items">
+						<div class="shopping-item">
+							<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_Q60WZLZtRpIMdh3VY-Cb4hf6iJk_K3xgcMoUcwUYFQ&s" alt="" />
+							<h3>Orange</h3>
+							<p>Price: $<span class="shopping-item-price">3</span></p>
+							<button class="add-to-cart">Add to cart</button>
+						</div>
+						<div class="shopping-item">
+							<img src="https://target.scene7.com/is/image/Target/GUEST_cf4773e6-afec-4aa1-89e7-74b7dfc09973"alt=""/>
+							<h3>Banana</h3>
+							<p>Price: $<span class="shopping-item-price">2</span></p>
+							<button class="add-to-cart">Add to cart</button>
+						</div>
+						<div class="shopping-item">
+							<img src="https://cdn11.bigcommerce.com/s-9in0l/images/stencil/2048x2048/products/131/616/LEMON_-_CITRUS_LIMON__33129.1682577315.png?c=2"alt=""/>
+							<h3>Lemon</h3>
+							<p>Price: $<span class="shopping-item-price">5</span></p>
+							<button class="add-to-cart">Add to cart</button>
+						</div>
+					</div>
+					<div class="cart-modal">
+						<div class="cart-modal-inner">
+							<div class="cart-modal-top">
+								<h3>Cart</h3>
+								<button class="close-modal">X</button>
+							</div>
+							<div class="cart-modal-items"></div>
+							<p>Total: <span class="cart-modal-price">0</span> $</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			let cart = [];
+			const cartBtn = document.querySelector(".cart-btn");
+			const clearCartBtn = document.querySelector(".clear-cart");
+			const shoppingItems = document.querySelectorAll(".shopping-item");
+			const addToCartBtns = document.querySelectorAll(".add-to-cart");
+			const cartItemsCount = document.querySelector(".cart-items-count");
+			const cartModal = document.querySelector(".cart-modal");
+			const cartModalItemsDiv = document.querySelector(".cart-modal-items");
+			const cartModalItems = document.querySelectorAll(".cart-modal-item");
+            const cartModalTotalPrice = document.querySelector('.cart-modal-price');
+			const closeModalBtn = document.querySelector(".close-modal");
+
+			function closeModal() {
+				cartModal.style.display = "none";
+			}
+
+            function openModal() {
+				renderCart();
+			}
+
+            function clearCart() {
+				cart = [];
+				updateCartCount();
+			}
+
+			function updateCartCount() {
+				cartItemsCount.innerText = cart.length;
+			}
+
+            function getTotalPrice(){
+                let cartTotalPrice = 0;
+
+                cart.forEach(cartItem => cartTotalPrice += cartItem.count * cartItem.price);
+
+                return cartTotalPrice;
+            };
+
+			function addToCart(item) {
+				const itemInCart = cart.find(
+					(cartItem) => cartItem.name === item.name
+				);
+
+				if (itemInCart) {
+					itemInCart.count++;
+				} else {
+					cart.push(item);
+				}
+
+				updateCartCount();
+			}
+
+            function renderCart(){
+                let cartModalItemsHtml = ``;
+
+				cart.forEach((cartItem, i) => {
+					cartModalItemsHtml += `
+                        <div class="cart-modal-item" id="${i}">
+                            <div class="cart-modal-item-img">
+                                <img
+                                    src="${cartItem.img}"
+                                    alt=""
+                                />
+                            </div>
+                            <h3 class="cart-modal-item-title">
+                                ${cartItem.name}
+                            </h3>
+                            <div class="cart-modal-item-count">
+                                <button class="decrease-count">-</button>
+                                <p class="cart-modal-item-count-value">${cartItem.count}</p>
+                                <button class="increase-count">+</button>
+                            </div>
+                            <p class="cart-modal-item-price">${cartItem.price * cartItem.count} $</p>
+                            <button class="cart-modal-item-remove">
+                                x
+                            </button>
+                        </div>
+                        `;
+				});
+
+                cartModalItemsDiv.innerHTML = cartModalItemsHtml;
+                cartModalTotalPrice.innerText = getTotalPrice();
+				cartModal.style.display = "flex";
+
+                document.querySelectorAll(".increase-count").forEach((btn, i) => {
+					btn.addEventListener("click", function () {
+						cart[i].count++;
+						updateCartItem(i);
+					});
+				});
+
+                document.querySelectorAll(".decrease-count").forEach((btn, i) => {
+					btn.addEventListener("click", function () {
+                        if (cart[i].count > 1){
+                            cart[i].count--;
+                            updateCartItem(i);
+                        } else {
+                            cart = cart.filter(cartItem => cartItem.name !== cart[i].name);
+                            renderCart();
+                            updateCartCount();
+                        };
+					});
+				});
+
+                document.querySelectorAll('.cart-modal-item-remove').forEach((btn, i) => {
+                    btn.addEventListener('click', function(){
+                        cart = cart.filter(cartItem => cartItem.name !== cart[i].name);
+                        renderCart();
+                        updateCartCount();
+                    })
+                });
+            };
+
+            function updateCartItem(i){
+                const cartTotalPrice = getTotalPrice();
+                const itemCount = document.querySelectorAll('.cart-modal-item-count-value')[i];
+                const itemPrice = document.querySelectorAll('.cart-modal-item-price')[i];
+                const itemTotalPrice = cart[i].price * cart[i].count;
+                itemCount.innerText = cart[i].count;
+                itemPrice.innerText = itemTotalPrice + ' $';
+               
+                cartModalTotalPrice.innerText = cartTotalPrice;
+            };
+
+            // Events
+			cartBtn.addEventListener("click", openModal);
+			closeModalBtn.addEventListener("click", closeModal);
+			clearCartBtn.addEventListener("click", clearCart);
+			addToCartBtns.forEach((btn, index) => {
+				btn.addEventListener("click", function () {
+					const target = shoppingItems[index];
+					const name = target.children[1].innerText;
+					const price = target.children[2].children[0].innerText;
+					const img = target.children[0].src;
+					const item = { name, price, img, count: 1 };
+
+					addToCart(item);
+				});
+			});
+		</script>
+	</body>
+</html>

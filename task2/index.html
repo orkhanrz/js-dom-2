@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
+		<title>Task 2</title>
+		<style>
+			body {
+				font-family: Poppins, sans-serif;
+			}
+
+			ul {
+				padding: 0;
+			}
+
+			li {
+				list-style: none;
+			}
+
+			button {
+				cursor: pointer;
+			}
+
+			input {
+				outline: none;
+				box-sizing: border-box;
+			}
+
+			.task-2 {
+				background-color: #2260cb;
+				padding: 16px;
+			}
+
+			.task-2 .todo {
+				max-width: 500px;
+				margin: 0 auto;
+				padding: 16px;
+				background-color: white;
+				border-radius: 4px;
+			}
+
+			.todo-top {
+				display: flex;
+				gap: 8px;
+			}
+
+			.todo-top input {
+				width: 100%;
+				border: 2px solid #2260cb;
+				border-radius: 4px;
+				padding: 8px;
+			}
+
+			.todo-top button {
+				background-color: #2260cb;
+				color: white;
+				border: none;
+				border-radius: 4px;
+				padding: 8px 16px;
+			}
+
+			.todo-list li {
+				background-color: #c5e0e5;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 0px 8px;
+				border-radius: 4px;
+				margin-bottom: 8px;
+			}
+
+			.todo-list li button {
+				background-color: #1d1ba3;
+				color: white;
+				border: none;
+				padding: 8px 10px;
+				border-radius: 4px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Task 2</h1>
+		<div class="task-2">
+			<div class="todo">
+				<div class="todo-top">
+					<input type="text" id="todoInput" />
+					<button id="todoAddBtn">Add</button>
+				</div>
+
+				<ul class="todo-list" id="todoList"></ul>
+			</div>
+		</div>
+
+		<script>
+			const todoBtns = document.getElementsByClassName(".todo-list li button");
+			const todoInput = document.querySelector("#todoInput");
+			const todoList = document.querySelector(".todo-list");
+			const todoAddBtn = document.querySelector("#todoAddBtn");
+
+			function addTodo() {
+				const todoItem = document.createElement("li");
+				const todoText = document.createElement("p");
+				const todoDeleteBtn = document.createElement("button");
+				const todoDeleteIcon = document.createElement("i");
+				todoDeleteIcon.classList.add("fa-solid");
+				todoDeleteIcon.classList.add("fa-trash");
+				todoText.innerText = todoInput.value;
+				todoItem.appendChild(todoText);
+				todoItem.appendChild(todoDeleteBtn);
+				todoDeleteBtn.appendChild(todoDeleteIcon);
+				todoList.appendChild(todoItem);
+				todoInput.value = "";
+				todoDeleteBtn.addEventListener("click", function () {
+					todoItem.remove();
+				});
+			}
+
+			todoAddBtn.onclick = function(){
+                if (todoInput.value.length){
+                    addTodo();
+                };
+            };
+		</script>
+	</body>
+</html>
