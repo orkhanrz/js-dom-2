@@ -156,31 +156,13 @@
                     <div class="usersModalContent">
                         <button id="closeUserModal">X</button>
                         <input type="text" class="userInput" required placeholder="Name" id="name" ${
-							mode === "edit"
-								? `value=${
-										user === null || user === void 0
-											? void 0
-											: user.name
-								  }`
-								: ""
+							mode === "edit" ? `value=${user === null || user === void 0 ? void 0 : user.name}` : ""
 						}>
                         <input type="text" class="userInput" required placeholder="Surname" id="surname" ${
-							mode === "edit"
-								? `value=${
-										user === null || user === void 0
-											? void 0
-											: user.surname
-								  }`
-								: ""
+							mode === "edit" ? `value=${user === null || user === void 0 ? void 0 : user.surname}` : ""
 						}>
                         <input type="number" class="userInput" required placeholder="Age" id="age" ${
-							mode === "edit"
-								? `value=${
-										user === null || user === void 0
-											? void 0
-											: user.age
-								  }`
-								: ""
+							mode === "edit" ? `value=${user === null || user === void 0 ? void 0 : user.age}` : ""
 						}>
                         ${
 							mode === "edit"
@@ -199,7 +181,7 @@
 
 			$(document).on("click", ".editUserBtn", function () {
 				const id = $(this).parent().attr("id");
-                activeUserId = id;
+				activeUserId = id;
 				user = users.find((u) => u.id == id);
 				const userModal = getUserModal("edit", user);
 				$("body").append(userModal);

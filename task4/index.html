@@ -104,6 +104,7 @@
 		<script>
 			const imageItems = document.querySelectorAll(".imageItem");
 			const modal = document.querySelector(".modal");
+			
 			imageItems.forEach((item) => {
 				item.addEventListener("click", function () {
 					const [img, prgrph] = this.children;
@@ -114,9 +115,7 @@
 					modalImage.src = image.src;
 					const paragraph = prgrph;
 					const modalText = document.createElement("p");
-					const modalTextContent = document.createTextNode(
-						paragraph.innerText
-					);
+					const modalTextContent = document.createTextNode(paragraph.innerText);
 					modalText.appendChild(modalTextContent);
 					const modalCloseBtn = document.createElement("button");
 					modalCloseBtn.classList.add("close-btn");
@@ -126,9 +125,7 @@
 					newModal.appendChild(modalText);
 					document.body.appendChild(newModal);
 
-					modalCloseBtn.addEventListener("click", () =>
-						newModal.remove()
-					);
+					modalCloseBtn.addEventListener("click", () => newModal.remove());
 				});
 			});
 		</script>

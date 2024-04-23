@@ -142,10 +142,7 @@
 						<button id="hard">Çətin</button>
 					</div>
 					<div class="step-3">
-						<h3 class="question">
-							1. Iki ədədin cəmi 5, fərqi 3-dür. Bu ədədlərin
-							hasilini tapın?
-						</h3>
+						<h3 class="question">1. Iki ədədin cəmi 5, fərqi 3-dür. Bu ədədlərin hasilini tapın?</h3>
 						<div class="options">
 							<button id="A"></button>
 							<button id="B"></button>
@@ -164,9 +161,7 @@
 							Düz cavabların sayı:
 							<span id="correctCount">1</span>
 						</p>
-						<p>
-							Səhv cavabların sayı: <span id="wrongCount">1</span>
-						</p>
+						<p>Səhv cavabların sayı: <span id="wrongCount">1</span></p>
 						<p>
 							Cavablandırılmayan sual sayı:
 							<span id="notAnsweredCount">1</span>
@@ -179,8 +174,8 @@
 		</div>
 
 		<script type="module">
-			import { quiz } from './questions.js';
-			
+			import { quiz } from "./questions.js";
+
 			const step1 = document.querySelector(".step-1");
 			const step2 = document.querySelector(".step-2");
 			const step3 = document.querySelector(".step-3");
@@ -217,7 +212,10 @@
 							btn.classList.add("selected");
 						}
 
-						if (btn.id === answers[questionIndex] && answers[questionIndex] !== questions[questionIndex].correct) {
+						if (
+							btn.id === answers[questionIndex] &&
+							answers[questionIndex] !== questions[questionIndex].correct
+						) {
 							btn.classList.add("wrong");
 						}
 

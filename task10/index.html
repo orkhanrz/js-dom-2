@@ -219,16 +219,11 @@
 
 		<script>
 			let activeAssessmentElement;
-			const assessmentRowElements = document.querySelectorAll(
-				".assessment table tbody tr p"
-			);
+			const assessmentRowElements = document.querySelectorAll(".assessment table tbody tr p");
 			const assessmentModal = document.querySelector(".assessmentModal");
-			const assessmentMarks = document.querySelectorAll(
-				".assessmentModalItems p"
-			);
+			const assessmentMarks = document.querySelectorAll(".assessmentModalItems p");
 			const rowHeadElements = document.querySelectorAll(".rowHeadEl");
-			const closeAssessmentModalBtn =
-				document.querySelector(".closeAssessment");
+			const closeAssessmentModalBtn = document.querySelector(".closeAssessment");
 
 			function toggleAssessmentModal() {
 				assessmentModal.classList.toggle("active");
@@ -240,10 +235,7 @@
 				targetEl.classList.add(swapEl.classList[0]);
 			}
 
-			closeAssessmentModalBtn.addEventListener(
-				"click",
-				toggleAssessmentModal
-			);
+			closeAssessmentModalBtn.addEventListener("click", toggleAssessmentModal);
 
 			assessmentRowElements.forEach((el) => {
 				el.addEventListener("click", function () {
@@ -263,12 +255,8 @@
 
 			rowHeadElements.forEach((el) => {
 				el.addEventListener("click", function () {
-					const columns = Array.from(
-						this.parentElement.parentElement.children
-					);
-					const index =
-						this.parentElement &&
-						columns.indexOf(this.parentElement) + 3;
+					const columns = Array.from(this.parentElement.parentElement.children);
+					const index = this.parentElement && columns.indexOf(this.parentElement) + 3;
 					const tableColElements = document.querySelectorAll(
 						`.assessment table tbody tr td:nth-child(${index}) p`
 					);

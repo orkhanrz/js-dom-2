@@ -73,9 +73,7 @@
 		</div>
 
 		<script>
-			const categoryBtns = document.querySelectorAll(
-				".filterCategories button"
-			);
+			const categoryBtns = document.querySelectorAll(".filterCategories button");
 			const filteredItemsDiv = document.querySelector(".filteredItems");
 			var ItemCategory;
 
@@ -173,8 +171,8 @@
 				},
 			];
 
-            function removeActiveClasses(elements) {
-				elements.forEach(element => element.classList.remove("active"));
+			function removeActiveClasses(elements) {
+				elements.forEach((element) => element.classList.remove("active"));
 			}
 
 			function renderItems(items) {
@@ -203,9 +201,7 @@
 					if (this.id === ItemCategory.All) {
 						filteredItems = items;
 					} else {
-						filteredItems = items.filter(
-							(i) => i.category === this.id
-						);
+						filteredItems = items.filter((i) => i.category === this.id);
 					}
 					renderItems(filteredItems);
 				});

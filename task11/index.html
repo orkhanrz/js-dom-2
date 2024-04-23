@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Task 11</title>
 		<style>
-            ul {
+			ul {
 				padding: 0;
 			}
 
@@ -53,7 +53,7 @@
 				padding: 4px;
 			}
 
-            .table {
+			.table {
 				border: 1px solid black;
 				border-collapse: collapse;
 			}
@@ -186,8 +186,7 @@
 		</div>
 
 		<script>
-			const ilhamInputWrapper =
-				document.querySelector(".ilhamInputWrapper");
+			const ilhamInputWrapper = document.querySelector(".ilhamInputWrapper");
 			const ilhamInput = document.querySelector(".ilham input");
 			const ilhamBtn = document.querySelector(".ilham button");
 			const targetHeadCol = document.querySelector(".targetHeadCol");
@@ -196,9 +195,7 @@
 			let rowMarks = [0, 0, 0, 0, 0];
 
 			function closeAssessmentTool() {
-				document
-					.querySelectorAll(".tool")
-					.forEach((tool) => tool.remove());
+				document.querySelectorAll(".tool").forEach((tool) => tool.remove());
 			}
 
 			function openAssessmentTool(cell, row) {
@@ -249,9 +246,7 @@
 
 			function markPerson(row, cell, btn) {
 				cell.children[0].textContent = btn.textContent;
-				cell.children[0].classList.remove(
-					cell.children[0].classList.value
-				);
+				cell.children[0].classList.remove(cell.children[0].classList.value);
 				cell.children[0].classList.add(btn.classList.value);
 
 				if (btn.className.includes("green")) {

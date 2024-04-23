@@ -85,10 +85,7 @@
 	<body>
 		<h1>Task 7</h1>
 		<div class="task-7">
-			<p>
-				Şəkiller hissəsində 6-dan çox şəkil var. Qalan şəkilləri görmək
-				üçün sağ tərəfə scroll edin.
-			</p>
+			<p>Şəkiller hissəsində 6-dan çox şəkil var. Qalan şəkilləri görmək üçün sağ tərəfə scroll edin.</p>
 			<div class="container">
 				<div class="flexImages">
 					<div class="activeImage">
@@ -120,9 +117,7 @@
 			];
 
 			$.each(images, function (index, value) {
-				$(".inActiveImages").append(
-					`<div class="inActiveImageItem"><img src="${images[index]}"/></div>`
-				);
+				$(".inActiveImages").append(`<div class="inActiveImageItem"><img src="${images[index]}"/></div>`);
 			});
 
 			$("#previous").click(function () {
@@ -150,8 +145,8 @@
 			});
 
 			$(document).on("click", ".inActiveImageItem", function () {
-                activeIndex = $(this).index();
-				$('.activeImage img').attr('src', images[activeIndex]);
+				activeIndex = $(this).index();
+				$(".activeImage img").attr("src", images[activeIndex]);
 			});
 		</script>
 	</body>

@@ -164,19 +164,28 @@
 					</div>
 					<div class="shopping-items">
 						<div class="shopping-item">
-							<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_Q60WZLZtRpIMdh3VY-Cb4hf6iJk_K3xgcMoUcwUYFQ&s" alt="" />
+							<img
+								src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_Q60WZLZtRpIMdh3VY-Cb4hf6iJk_K3xgcMoUcwUYFQ&s"
+								alt=""
+							/>
 							<h3>Orange</h3>
 							<p>Price: $<span class="shopping-item-price">3</span></p>
 							<button class="add-to-cart">Add to cart</button>
 						</div>
 						<div class="shopping-item">
-							<img src="https://target.scene7.com/is/image/Target/GUEST_cf4773e6-afec-4aa1-89e7-74b7dfc09973"alt=""/>
+							<img
+								src="https://target.scene7.com/is/image/Target/GUEST_cf4773e6-afec-4aa1-89e7-74b7dfc09973"
+								alt=""
+							/>
 							<h3>Banana</h3>
 							<p>Price: $<span class="shopping-item-price">2</span></p>
 							<button class="add-to-cart">Add to cart</button>
 						</div>
 						<div class="shopping-item">
-							<img src="https://cdn11.bigcommerce.com/s-9in0l/images/stencil/2048x2048/products/131/616/LEMON_-_CITRUS_LIMON__33129.1682577315.png?c=2"alt=""/>
+							<img
+								src="https://cdn11.bigcommerce.com/s-9in0l/images/stencil/2048x2048/products/131/616/LEMON_-_CITRUS_LIMON__33129.1682577315.png?c=2"
+								alt=""
+							/>
 							<h3>Lemon</h3>
 							<p>Price: $<span class="shopping-item-price">5</span></p>
 							<button class="add-to-cart">Add to cart</button>
@@ -206,18 +215,18 @@
 			const cartModal = document.querySelector(".cart-modal");
 			const cartModalItemsDiv = document.querySelector(".cart-modal-items");
 			const cartModalItems = document.querySelectorAll(".cart-modal-item");
-            const cartModalTotalPrice = document.querySelector('.cart-modal-price');
+			const cartModalTotalPrice = document.querySelector(".cart-modal-price");
 			const closeModalBtn = document.querySelector(".close-modal");
 
 			function closeModal() {
 				cartModal.style.display = "none";
 			}
 
-            function openModal() {
+			function openModal() {
 				renderCart();
 			}
 
-            function clearCart() {
+			function clearCart() {
 				cart = [];
 				updateCartCount();
 			}
@@ -226,18 +235,16 @@
 				cartItemsCount.innerText = cart.length;
 			}
 
-            function getTotalPrice(){
-                let cartTotalPrice = 0;
+			function getTotalPrice() {
+				let cartTotalPrice = 0;
 
-                cart.forEach(cartItem => cartTotalPrice += cartItem.count * cartItem.price);
+				cart.forEach((cartItem) => (cartTotalPrice += cartItem.count * cartItem.price));
 
-                return cartTotalPrice;
-            };
+				return cartTotalPrice;
+			}
 
 			function addToCart(item) {
-				const itemInCart = cart.find(
-					(cartItem) => cartItem.name === item.name
-				);
+				const itemInCart = cart.find((cartItem) => cartItem.name === item.name);
 
 				if (itemInCart) {
 					itemInCart.count++;
@@ -248,8 +255,8 @@
 				updateCartCount();
 			}
 
-            function renderCart(){
-                let cartModalItemsHtml = ``;
+			function renderCart() {
+				let cartModalItemsHtml = ``;
 
 				cart.forEach((cartItem, i) => {
 					cartModalItemsHtml += `
@@ -276,51 +283,51 @@
                         `;
 				});
 
-                cartModalItemsDiv.innerHTML = cartModalItemsHtml;
-                cartModalTotalPrice.innerText = getTotalPrice();
+				cartModalItemsDiv.innerHTML = cartModalItemsHtml;
+				cartModalTotalPrice.innerText = getTotalPrice();
 				cartModal.style.display = "flex";
 
-                document.querySelectorAll(".increase-count").forEach((btn, i) => {
+				document.querySelectorAll(".increase-count").forEach((btn, i) => {
 					btn.addEventListener("click", function () {
 						cart[i].count++;
 						updateCartItem(i);
 					});
 				});
 
-                document.querySelectorAll(".decrease-count").forEach((btn, i) => {
+				document.querySelectorAll(".decrease-count").forEach((btn, i) => {
 					btn.addEventListener("click", function () {
-                        if (cart[i].count > 1){
-                            cart[i].count--;
-                            updateCartItem(i);
-                        } else {
-                            cart = cart.filter(cartItem => cartItem.name !== cart[i].name);
-                            renderCart();
-                            updateCartCount();
-                        };
+						if (cart[i].count > 1) {
+							cart[i].count--;
+							updateCartItem(i);
+						} else {
+							cart = cart.filter((cartItem) => cartItem.name !== cart[i].name);
+							renderCart();
+							updateCartCount();
+						}
 					});
 				});
 
-                document.querySelectorAll('.cart-modal-item-remove').forEach((btn, i) => {
-                    btn.addEventListener('click', function(){
-                        cart = cart.filter(cartItem => cartItem.name !== cart[i].name);
-                        renderCart();
-                        updateCartCount();
-                    })
-                });
-            };
+				document.querySelectorAll(".cart-modal-item-remove").forEach((btn, i) => {
+					btn.addEventListener("click", function () {
+						cart = cart.filter((cartItem) => cartItem.name !== cart[i].name);
+						renderCart();
+						updateCartCount();
+					});
+				});
+			}
 
-            function updateCartItem(i){
-                const cartTotalPrice = getTotalPrice();
-                const itemCount = document.querySelectorAll('.cart-modal-item-count-value')[i];
-                const itemPrice = document.querySelectorAll('.cart-modal-item-price')[i];
-                const itemTotalPrice = cart[i].price * cart[i].count;
-                itemCount.innerText = cart[i].count;
-                itemPrice.innerText = itemTotalPrice + ' $';
-               
-                cartModalTotalPrice.innerText = cartTotalPrice;
-            };
+			function updateCartItem(i) {
+				const cartTotalPrice = getTotalPrice();
+				const itemCount = document.querySelectorAll(".cart-modal-item-count-value")[i];
+				const itemPrice = document.querySelectorAll(".cart-modal-item-price")[i];
+				const itemTotalPrice = cart[i].price * cart[i].count;
+				itemCount.innerText = cart[i].count;
+				itemPrice.innerText = itemTotalPrice + " $";
 
-            // Events
+				cartModalTotalPrice.innerText = cartTotalPrice;
+			}
+
+			// Events
 			cartBtn.addEventListener("click", openModal);
 			closeModalBtn.addEventListener("click", closeModal);
 			clearCartBtn.addEventListener("click", clearCart);

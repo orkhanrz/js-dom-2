@@ -159,51 +159,37 @@
 
 		<script>
 			//Task 3
-			let taskItemParagraphs = document.querySelectorAll(
-				".taskItem .taskItemContainer p"
-			);
-			const taskItemButtons = document.querySelectorAll(
-				".taskButtons button"
-			);
+			let taskItemParagraphs = document.querySelectorAll(".taskItem .taskItemContainer p");
+			const taskItemButtons = document.querySelectorAll(".taskButtons button");
 			const taskInput = document.querySelector("#taskInput");
 			const taskInputBtn = document.querySelector("#taskInputBtn");
 			let activeElement;
+
 			function removeActiveClasses(elements) {
-				elements.forEach(
-					(element) =>
-						element instanceof Element &&
-						element.classList.remove("active")
-				);
+				elements.forEach((element) => element instanceof Element && element.classList.remove("active"));
 			}
+
 			function moveElement(element, position) {
 				var _a, _b;
 				const nextElement =
-					(_a = element.parentElement) === null || _a === void 0
-						? void 0
-						: _a.nextElementSibling;
+					(_a = element.parentElement) === null || _a === void 0 ? void 0 : _a.nextElementSibling;
 				const previousElement =
-					(_b = element.parentElement) === null || _b === void 0
-						? void 0
-						: _b.previousElementSibling;
+					(_b = element.parentElement) === null || _b === void 0 ? void 0 : _b.previousElementSibling;
 				if (activeElement) {
 					if (position === "left") {
-						previousElement.children[1].insertAdjacentElement(
-							"beforeend",
-							activeElement
-						);
+						previousElement.children[1].insertAdjacentElement("beforeend", activeElement);
 					} else {
-						nextElement.children[1].insertAdjacentElement(
-							"beforeend",
-							activeElement
-						);
+						nextElement.children[1].insertAdjacentElement("beforeend", activeElement);
 					}
 				}
 			}
+
 			function addActiveClass(element) {
 				removeActiveClasses(taskItemParagraphs);
 				element.classList.add("active");
 				activeElement = element;
 			}
+
 			taskItemButtons.forEach((btn) => {
 				btn.addEventListener("click", function () {
 					if (this.className.includes("leftArrow")) {
@@ -214,17 +200,15 @@
 					}
 				});
 			});
+
 			taskInputBtn.addEventListener("click", () => {
 				removeActiveClasses(taskItemParagraphs);
-				const tasksToDoEl =
-					document.querySelector(".taskItemContainer");
+				const tasksToDoEl = document.querySelector(".taskItemContainer");
 				const newElement = document.createElement("p");
 				newElement.textContent = taskInput.value;
 				tasksToDoEl.insertAdjacentElement("beforeend", newElement);
 				taskInput.value = "";
-				taskItemParagraphs = document.querySelectorAll(
-					".taskItem .taskItemContainer p"
-				);
+				taskItemParagraphs = document.querySelectorAll(".taskItem .taskItemContainer p");
 				newElement.addEventListener("click", () => {
 					addActiveClass(newElement);
 				});
