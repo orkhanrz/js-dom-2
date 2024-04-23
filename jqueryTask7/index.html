@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+			integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		></script>
+		<style>
+			button {
+				cursor: pointer;
+			}
+
+			.task-7 p {
+				text-align: center;
+			}
+
+			.flexImages {
+				display: flex;
+				flex-direction: column;
+				max-width: 800px;
+				width: 100%;
+				margin: 0 auto;
+			}
+
+			.activeImage {
+				position: relative;
+				height: 100%;
+			}
+
+			.activeImage img {
+				width: 100%;
+				height: 100%;
+				display: block;
+				object-fit: cover;
+			}
+
+			.imageControls {
+				position: absolute;
+				top: 50%;
+				width: 100%;
+				display: flex;
+				justify-content: space-between;
+			}
+
+			.imageControls button {
+				color: white;
+				font-size: 18px;
+				background: none;
+				border: none;
+				border-radius: 4px;
+				padding: 8px 12px;
+				transition: background 250ms ease;
+			}
+
+			.imageControls button:hover,
+			.imageControls button:focus {
+				background: black;
+			}
+
+			.inActiveImages {
+				display: flex;
+				overflow-x: scroll;
+				overflow-y: hidden;
+			}
+
+			.inActiveImageItem {
+				width: calc(100% / 6);
+				height: 80px;
+				flex-shrink: 0;
+				cursor: pointer;
+			}
+
+			.inActiveImageItem img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+		</style>
+		<title>jQuery Task 7</title>
+	</head>
+	<body>
+		<h1>Task 7</h1>
+		<div class="task-7">
+			<p>
+				Şəkiller hissəsində 6-dan çox şəkil var. Qalan şəkilləri görmək
+				üçün sağ tərəfə scroll edin.
+			</p>
+			<div class="container">
+				<div class="flexImages">
+					<div class="activeImage">
+						<img
+							src="https://images.pexels.com/photos/581222/pexels-photo-581222.jpeg?auto=compress&cs=tinysrgb&w=600"
+							alt=""
+						/>
+						<div class="imageControls">
+							<button id="previous"><</button>
+							<button id="next">></button>
+						</div>
+					</div>
+					<div class="inActiveImages"></div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			let activeIndex = 0;
+			const images = [
+				"https://images.pexels.com/photos/581222/pexels-photo-581222.jpeg?auto=compress&cs=tinysrgb&w=600",
+				"https://images.pexels.com/photos/372166/pexels-photo-372166.jpeg?auto=compress&cs=tinysrgb&w=600",
+				"https://images.pexels.com/photos/33393/caudata-strelitzia-bird-of-paradise-flower-strelitzia-orchids.jpg?auto=compress&cs=tinysrgb&w=600",
+				"https://images.pexels.com/photos/1242286/pexels-photo-1242286.jpeg?auto=compress&cs=tinysrgb&w=600",
+				"https://images.pexels.com/photos/54267/sunflower-blossom-bloom-flowers-54267.jpeg?auto=compress&cs=tinysrgb&w=600",
+				"https://images.pexels.com/photos/207172/pexels-photo-207172.jpeg?auto=compress&cs=tinysrgb&w=600",
+				"https://images.pexels.com/photos/129044/pexels-photo-129044.jpeg?auto=compress&cs=tinysrgb&w=600",
+				"https://images.pexels.com/photos/1488310/pexels-photo-1488310.jpeg?auto=compress&cs=tinysrgb&w=600",
+			];
+
+			$.each(images, function (index, value) {
+				$(".inActiveImages").append(
+					`<div class="inActiveImageItem"><img src="${images[index]}"/></div>`
+				);
+			});
+
+			$("#previous").click(function () {
+				if (activeIndex == 0) {
+					activeIndex = images.length - 1;
+				} else {
+					activeIndex--;
+				}
+
+				console.log(activeIndex);
+
+				$(".activeImage img").attr("src", images[activeIndex]);
+			});
+
+			$("#next").click(function () {
+				if (activeIndex == images.length - 1) {
+					activeIndex = 0;
+				} else {
+					activeIndex++;
+				}
+
+				console.log(activeIndex);
+
+				$(".activeImage img").attr("src", images[activeIndex]);
+			});
+
+			$(document).on("click", ".inActiveImageItem", function () {
+                activeIndex = $(this).index();
+				$('.activeImage img').attr('src', images[activeIndex]);
+			});
+		</script>
+	</body>
+</html>
